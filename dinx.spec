@@ -7,10 +7,10 @@ Release:	2
 License:	MPL/GPL
 Group:		Applications/System
 Source0:	http://prdownloads.sourceforge.net/dinx/%{name}-%{version}.tar.gz
-#Patch0:		
+#Patch0:
 URL:		http://dinx.sourceforge.net/
-#BuildRequires:	
-#Requires:	
+#BuildRequires:
+#Requires:
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/DinX
@@ -28,7 +28,7 @@ szybki. Powinien byæ odpowiedni do uruchamiania wielu aplikacji
 okienkowych na ma³ym systemie.
 
 %package devel
-Summary:	DinX devel	
+Summary:	DinX devel
 Summary(pl):	DinX dla programistów
 Group:		Development/Libraries
 
