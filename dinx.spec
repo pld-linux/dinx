@@ -8,7 +8,7 @@ License:	GPL
 Group:		DinX
 ######		Unknown group!
 Group(pl):	DinX
-Source0:	%name-%version.tar.gz
+Source0:	%{name}-%{version}.tar.gz
 Patch0:		
 #BuildRequires:	
 URL:		http://dinx.sourceforge.net/
