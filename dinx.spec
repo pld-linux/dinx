@@ -4,11 +4,12 @@ Summary(pl):	DinX
 Name:		dinx
 Version:	0.2.2
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		DinX
+######		Unknown group!
 Group(pl):	DinX
-Source:		%name-%version.tar.gz
-#Patch:		
+Source0:	%name-%version.tar.gz
+Patch0:		
 #BuildRequires:	
 URL:		http://dinx.sourceforge.net/
 #Requires:	
@@ -19,13 +20,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define	_sysincludedir	/usr/include
 
 %description
-  
+
 %description -l pl
 
 %package devel
 Summary:	DinX devel	
 Summary(pl):	DinX devel
 Group:		DinX
+######		Unknown group!
 Group(pl):	DinX
 
 %description devel
@@ -36,6 +38,7 @@ Group(pl):	DinX
 Summary:	DinX kernel modules.
 Summary(pl):	DinX modu³y j±dra.
 Group:		DinX
+######		Unknown group!
 Group(pl):	DinX
 
 %description kernel-%{sysver}-modules
@@ -55,7 +58,7 @@ make RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/dev
 install -d $RPM_BUILD_ROOT%{_modulesdir}/misc
-install -d $RPM_BUILD_ROOT/usr/include/{dinx,linux}
+install -d $RPM_BUILD_ROOT%{_includedir}/{dinx,linux}
 make prefix=$RPM_BUILD_ROOT%{_prefix} install
 
 (cd $RPM_BUILD_ROOT; cd usr/include; install -d {dinx,linux}; \
@@ -65,7 +68,7 @@ ln -s ../../DinX/include/dinx/messages.h dinx/messages.h)
 
 install -s modules/dinx*.o $RPM_BUILD_ROOT%{_modulesdir}/misc
 
-gzip -9 README
+gzip -9nf README
 
 cd $RPM_BUILD_ROOT/dev
 echo "Makeing DinX devices.."
