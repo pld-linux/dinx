@@ -66,7 +66,7 @@ ln -sf ../../DinX/include/linux/dinx.h linux/dinx.h;\
 ln -sf ../../DinX/include/dinx/access.h dinx/access.h; \
 ln -sf ../../DinX/include/dinx/messages.h dinx/messages.h)
 
-install -s modules/dinx*.o $RPM_BUILD_ROOT%{_modulesdir}/misc
+install modules/dinx*.o $RPM_BUILD_ROOT%{_modulesdir}/misc
 
 gzip -9nf README
 
