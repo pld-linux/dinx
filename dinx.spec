@@ -1,0 +1,130 @@
+%define		sysver	2.2.13
+Summary:	DinX
+Summary(pl):	DinX
+Name:		dinx
+Version:	0.2.2
+Release:	1
+Copyright:	GPL
+Group:		DinX
+Group(pl):	DinX
+Source:		%name-%version.tar.gz
+#Patch:		
+#BuildRequires:	
+URL:		http://dinx.sourceforge.net/
+#Requires:	
+Buildroot:	/tmp/%{name}-%{version}-root
+
+%define	_prefix	/usr/DinX
+%define _modulesdir	/lib/modules/%sysver
+%define	_sysincludedir	/usr/include
+
+%description
+  
+%description -l pl
+
+
+%package devel
+Summary:	DinX devel	
+Summary(pl):	DinX devel
+Group:		DinX
+Group(pl):	DinX
+
+%description devel
+
+%description -l pl devel
+
+%package kernel-modules
+Summary:	DinX kernel modules.
+Summary(pl):	DinX mdó³y j±dra.
+Group:		DinX
+Group(pl):	DinX
+
+%description kernel-modules
+
+%description -l pl kernel-modules
+
+%prep
+%setup -q
+
+#%patch
+
+%build
+./configure --prefix=%{_prefix}
+make RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
+
+%install
+rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_modulesdir}/misc
+install -d $RPM_BUILD_ROOT/usr/include/{dinx,linux}
+make prefix=$RPM_BUILD_ROOT%{_prefix} install
+
+(cd $RPM_BUILD_ROOT; cd usr/include; install -d {dinx,linux}; \
+ln -s ../../DinX/include/linux/dinx.h linux/dinx.h;\
+ln -s ../../DinX/include/dinx/access.h dinx/access.h; \
+ln -s ../../DinX/include/dinx/messages.h dinx/messages.h)
+
+install -s modules/dinx*.o $RPM_BUILD_ROOT%{_modulesdir}/misc
+
+gzip -9 README
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%prein
+echo "Makeing DinX devices.."
+mknod /dev/dinxwin0 c 60 0
+mknod /dev/dinxwin1 c 60 1
+mknod /dev/dinxwin2 c 60 2
+mknod /dev/dinxwin3 c 60 3
+mknod /dev/dinxwin4 c 60 4
+mknod /dev/dinxwin5 c 60 5
+mknod /dev/dinxwin6 c 60 6
+mknod /dev/dinxwin7 c 60 7
+mknod /dev/dinxwin8 c 60 8
+mknod /dev/dinxwin9 c 60 9
+mknod /dev/dinxwin10 c 60 10
+mknod /dev/dinxwin11 c 60 11
+mknod /dev/dinxwin12 c 60 12
+mknod /dev/dinxwin13 c 60 13
+mknod /dev/dinxwin14 c 60 14
+mknod /dev/dinxwin15 c 60 15
+
+echo "Makeing DinX Server devices.."
+mknod /dev/dinxsvr0 c 60 0
+mknod /dev/dinxsvr1 c 60 1
+mknod /dev/dinxsvr2 c 60 2
+mknod /dev/dinxsvr3 c 60 3
+mknod /dev/dinxsvr4 c 60 4
+mknod /dev/dinxsvr5 c 60 5
+mknod /dev/dinxsvr6 c 60 6
+mknod /dev/dinxsvr7 c 60 7
+mknod /dev/dinxsvr8 c 60 8
+mknod /dev/dinxsvr9 c 60 9
+mknod /dev/dinxsvr10 c 60 10
+mknod /dev/dinxsvr11 c 60 11
+mknod /dev/dinxsvr12 c 60 12
+mknod /dev/dinxsvr13 c 60 13
+mknod /dev/dinxsvr14 c 60 14
+mknod /dev/dinxsvr15 c 60 15
+
+%preun
+%postin
+%postun
+
+%files
+%defattr(644,root,root,755)
+%doc README.gz doc/*
+%attr(755,root,root) %{_bindir}/dinxd
+%attr(644,root,root) %{_libdir}/libdinx.a
+
+%files devel
+%defattr(644,root,root,755)
+%attr(644,root,root) %{_sysincludedir}/linux/dinx.h
+%attr(644,root,root) %{_sysincludedir}/dinx/*.h
+%attr(644,root,root) %{_includedir}/linux/dinx.h
+%attr(644,root,root) %{_includedir}/dinx/*.h
+
+
+%files kernel-modules
+%defattr(644,root,root,755)
+%attr(644,root,root) %{_modulesdir}/misc/*.o
