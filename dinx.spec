@@ -12,6 +12,7 @@ URL:		http://dinx.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # NOT FHS-compliant
+# TODO: missing dirs (after making it FHS-compliant)
 %define		_prefix		/usr/DinX
 %define		_modulesdir	/lib/modules/%{sysver}
 %define		_sysincludedir	/usr/include
@@ -50,18 +51,20 @@ Modu³y j±dra dla DinX.
 
 %prep
 %setup -q
-#%patch
 
 %build
-./configure --prefix=%{_prefix}
-%{__make} RPM_OPT_FLAGS="%{rpmcflags}"
+%configure2_13
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/dev
 install -d $RPM_BUILD_ROOT%{_modulesdir}/misc
 install -d $RPM_BUILD_ROOT%{_includedir}/{dinx,linux}
-%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
+
+%{__make} install \
+	prefix=$RPM_BUILD_ROOT%{_prefix}
 
 (cd $RPM_BUILD_ROOT; cd usr/include; install -d {dinx,linux}; \
 ln -sf ../../DinX/include/linux/dinx.h linux/dinx.h;\
@@ -120,11 +123,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(644,root,root) %{_libdir}/libdinx.a
-%attr(644,root,root) %{_sysincludedir}/linux/dinx.h
-%attr(644,root,root) %{_sysincludedir}/dinx/*.h
-%attr(644,root,root) %{_includedir}/linux/dinx.h
-%attr(644,root,root) %{_includedir}/dinx/*.h
+%{_libdir}/libdinx.a
+%{_sysincludedir}/linux/dinx.h
+%{_sysincludedir}/dinx/*.h
+%{_includedir}/linux/dinx.h
+%{_includedir}/dinx/*.h
 
 %files kernel-%{sysver}-modules
 %defattr(644,root,root,755)
