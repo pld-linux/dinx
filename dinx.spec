@@ -12,7 +12,7 @@ Source:		%name-%version.tar.gz
 #BuildRequires:	
 URL:		http://dinx.sourceforge.net/
 #Requires:	
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define	_prefix	/usr/DinX
 %define _modulesdir	/lib/modules/%{sysver}
@@ -21,7 +21,6 @@ Buildroot:	/tmp/%{name}-%{version}-root
 %description
   
 %description -l pl
-
 
 %package devel
 Summary:	DinX devel	
