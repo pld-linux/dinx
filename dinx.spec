@@ -71,8 +71,6 @@ ln -sf ../../DinX/include/dinx/messages.h dinx/messages.h)
 
 install modules/dinx*.o $RPM_BUILD_ROOT%{_modulesdir}/misc
 
-gzip -9nf README
-
 cd $RPM_BUILD_ROOT/dev
 echo "Making DinX devices.."
 mknod dinxwin0 c 60 0
@@ -121,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz doc/*
+%doc README doc/*
 %attr(755,root,root) %{_bindir}/dinxd
 %attr(666,root,root) /dev/dinx*
 
