@@ -7,6 +7,7 @@ Release:	2
 License:	MPL/GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/dinx/%{name}-%{version}.tar.gz
+# Source0-md5:	79386af387fd05b9af9407939d4629c1
 URL:		http://dinx.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
