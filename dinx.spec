@@ -6,8 +6,6 @@ Version:	0.2.2
 Release:	2
 License:	MPL/GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	http://prdownloads.sourceforge.net/dinx/%{name}-%{version}.tar.gz
 #Patch0:		
 URL:		http://dinx.sourceforge.net/
@@ -33,13 +31,6 @@ okienkowych na ma≥ym systemie.
 Summary:	DinX devel	
 Summary(pl):	DinX dla programistÛw
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
-Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
 
 %description devel
 Header files for DinX libraries.
@@ -51,8 +42,6 @@ Pliki nag≥Ûwkowe do bibliotek DinX.
 Summary:	DinX kernel modules
 Summary(pl):	DinX - modu≥y j±dra
 Group:		Base/Kernel
-Group(de):	Grunds‰tzlich/Kern
-Group(pl):	Podstawowe/J±dro
 
 %description kernel-%{sysver}-modules
 Kernel modules for DinX.
