@@ -52,14 +52,14 @@ Group(pl):	DinX
 
 %build
 ./configure --prefix=%{_prefix}
-make RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
+%{__make} RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/dev
 install -d $RPM_BUILD_ROOT%{_modulesdir}/misc
 install -d $RPM_BUILD_ROOT%{_includedir}/{dinx,linux}
-make prefix=$RPM_BUILD_ROOT%{_prefix} install
+%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
 
 (cd $RPM_BUILD_ROOT; cd usr/include; install -d {dinx,linux}; \
 ln -s ../../DinX/include/linux/dinx.h linux/dinx.h;\
