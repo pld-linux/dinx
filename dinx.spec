@@ -35,7 +35,7 @@ Group(pl):	DinX
 
 %package kernel-%{sysver}-modules
 Summary:	DinX kernel modules.
-Summary(pl):	DinX mdó³y j±dra.
+Summary(pl):	DinX modu³y j±dra.
 Group:		DinX
 Group(pl):	DinX
 
