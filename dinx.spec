@@ -1,4 +1,4 @@
-%define		sysver	2.2.13
+%define		sysver	%(echo `uname -r`)
 Summary:	DinX
 Summary(pl):	DinX
 Name:		dinx
@@ -15,7 +15,7 @@ URL:		http://dinx.sourceforge.net/
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %define	_prefix	/usr/DinX
-%define _modulesdir	/lib/modules/%sysver
+%define _modulesdir	/lib/modules/%{sysver}
 %define	_sysincludedir	/usr/include
 
 %description
@@ -33,15 +33,15 @@ Group(pl):	DinX
 
 %description -l pl devel
 
-%package kernel-modules
+%package kernel-%{sysver}-modules
 Summary:	DinX kernel modules.
 Summary(pl):	DinX mdó³y j±dra.
 Group:		DinX
 Group(pl):	DinX
 
-%description kernel-modules
+%description kernel-%{sysver}-modules
 
-%description -l pl kernel-modules
+%description -l pl kernel-%{sysver}-modules
 
 %prep
 %setup -q
@@ -54,6 +54,7 @@ make RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/dev
 install -d $RPM_BUILD_ROOT%{_modulesdir}/misc
 install -d $RPM_BUILD_ROOT/usr/include/{dinx,linux}
 make prefix=$RPM_BUILD_ROOT%{_prefix} install
@@ -67,48 +68,50 @@ install -s modules/dinx*.o $RPM_BUILD_ROOT%{_modulesdir}/misc
 
 gzip -9 README
 
+cd $RPM_BUILD_ROOT/dev
+echo "Makeing DinX devices.."
+mknod dinxwin0 c 60 0
+mknod dinxwin1 c 60 1
+mknod dinxwin2 c 60 2
+mknod dinxwin3 c 60 3
+mknod dinxwin4 c 60 4
+mknod dinxwin5 c 60 5
+mknod dinxwin6 c 60 6
+mknod dinxwin7 c 60 7
+mknod dinxwin8 c 60 8
+mknod dinxwin9 c 60 9
+mknod dinxwin10 c 60 10
+mknod dinxwin11 c 60 11
+mknod dinxwin12 c 60 12
+mknod dinxwin13 c 60 13
+mknod dinxwin14 c 60 14
+mknod dinxwin15 c 60 15
+ln -s dinxwin0 dinxwin
+
+echo "Makeing DinX Server devices.."
+mknod dinxsvr0 c 60 0
+mknod dinxsvr1 c 60 1
+mknod dinxsvr2 c 60 2
+mknod dinxsvr3 c 60 3
+mknod dinxsvr4 c 60 4
+mknod dinxsvr5 c 60 5
+mknod dinxsvr6 c 60 6
+mknod dinxsvr7 c 60 7
+mknod dinxsvr8 c 60 8
+mknod dinxsvr9 c 60 9
+mknod dinxsvr10 c 60 10
+mknod dinxsvr11 c 60 11
+mknod dinxsvr12 c 60 12
+mknod dinxsvr13 c 60 13
+mknod dinxsvr14 c 60 14
+mknod dinxsvr15 c 60 15
+ln -s dinxsvr0 dinxsvr
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%prein
-echo "Makeing DinX devices.."
-mknod /dev/dinxwin0 c 60 0
-mknod /dev/dinxwin1 c 60 1
-mknod /dev/dinxwin2 c 60 2
-mknod /dev/dinxwin3 c 60 3
-mknod /dev/dinxwin4 c 60 4
-mknod /dev/dinxwin5 c 60 5
-mknod /dev/dinxwin6 c 60 6
-mknod /dev/dinxwin7 c 60 7
-mknod /dev/dinxwin8 c 60 8
-mknod /dev/dinxwin9 c 60 9
-mknod /dev/dinxwin10 c 60 10
-mknod /dev/dinxwin11 c 60 11
-mknod /dev/dinxwin12 c 60 12
-mknod /dev/dinxwin13 c 60 13
-mknod /dev/dinxwin14 c 60 14
-mknod /dev/dinxwin15 c 60 15
+%post
 
-echo "Makeing DinX Server devices.."
-mknod /dev/dinxsvr0 c 60 0
-mknod /dev/dinxsvr1 c 60 1
-mknod /dev/dinxsvr2 c 60 2
-mknod /dev/dinxsvr3 c 60 3
-mknod /dev/dinxsvr4 c 60 4
-mknod /dev/dinxsvr5 c 60 5
-mknod /dev/dinxsvr6 c 60 6
-mknod /dev/dinxsvr7 c 60 7
-mknod /dev/dinxsvr8 c 60 8
-mknod /dev/dinxsvr9 c 60 9
-mknod /dev/dinxsvr10 c 60 10
-mknod /dev/dinxsvr11 c 60 11
-mknod /dev/dinxsvr12 c 60 12
-mknod /dev/dinxsvr13 c 60 13
-mknod /dev/dinxsvr14 c 60 14
-mknod /dev/dinxsvr15 c 60 15
-
-%preun
-%postin
 %postun
 
 %files
@@ -116,6 +119,7 @@ mknod /dev/dinxsvr15 c 60 15
 %doc README.gz doc/*
 %attr(755,root,root) %{_bindir}/dinxd
 %attr(644,root,root) %{_libdir}/libdinx.a
+%attr(666,root,root) /dev/dinx*
 
 %files devel
 %defattr(644,root,root,755)
@@ -124,7 +128,6 @@ mknod /dev/dinxsvr15 c 60 15
 %attr(644,root,root) %{_includedir}/linux/dinx.h
 %attr(644,root,root) %{_includedir}/dinx/*.h
 
-
-%files kernel-modules
+%files kernel-%{sysver}-modules
 %defattr(644,root,root,755)
 %attr(644,root,root) %{_modulesdir}/misc/*.o
