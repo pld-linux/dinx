@@ -6,13 +6,11 @@ Version:	0.2.2
 Release:	2
 License:	MPL/GPL
 Group:		Applications/System
-Source0:	http://prdownloads.sourceforge.net/dinx/%{name}-%{version}.tar.gz
-#Patch0:
+Source0:	http://dl.sourceforge.net/dinx/%{name}-%{version}.tar.gz
 URL:		http://dinx.sourceforge.net/
-#BuildRequires:
-#Requires:
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# NOT FHS-compliant
 %define		_prefix		/usr/DinX
 %define		_modulesdir	/lib/modules/%{sysver}
 %define		_sysincludedir	/usr/include
@@ -112,10 +110,6 @@ ln -sf dinxsvr0 dinxsvr
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%post
-
-%postun
 
 %files
 %defattr(644,root,root,755)
