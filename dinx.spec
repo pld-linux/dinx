@@ -1,17 +1,17 @@
 %define		sysver	%(echo `uname -r`)
-Summary:	DinX
-Summary(pl):	DinX
+Summary:	DinX is not X
+Summary(pl):	DinX to nie X
 Name:		dinx
 Version:	0.2.2
 Release:	1
-License:	GPL
-Group:		DinX
-######		Unknown group!
-Group(pl):	DinX
-Source0:	%{name}-%{version}.tar.gz
-Patch0:		
-#BuildRequires:	
+License:	MPL/GPL
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
+Source0:	http://prdownloads.sourceforge.net/dinx/%{name}-%{version}.tar.gz
+#Patch0:		
 URL:		http://dinx.sourceforge.net/
+#BuildRequires:	
 #Requires:	
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -20,34 +20,48 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysincludedir	/usr/include
 
 %description
+DinX is an experimental windowing system. DinX is designed to be
+simple, lightweight, and fast. It should be suitable for running
+multiple windowed programs on a small system, like a Linux handheld.
 
 %description -l pl
+DinX jest eksperymentalnym systemem okienkowym. Ma byÊ prosty, lekki i
+szybki. Powinien byÊ odpowiedni do uruchamiania wielu aplikacji
+okienkowych na ma≥ym systemie.
 
 %package devel
 Summary:	DinX devel	
-Summary(pl):	DinX devel
-Group:		DinX
-######		Unknown group!
-Group(pl):	DinX
+Summary(pl):	DinX dla programistÛw
+Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
+Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
 
 %description devel
+Header files for DinX libraries.
 
-%description -l pl devel
+%description devel -l pl
+Pliki nag≥Ûwkowe do bibliotek DinX.
 
 %package kernel-%{sysver}-modules
-Summary:	DinX kernel modules.
-Summary(pl):	DinX modu≥y j±dra.
-Group:		DinX
-######		Unknown group!
-Group(pl):	DinX
+Summary:	DinX kernel modules
+Summary(pl):	DinX - modu≥y j±dra
+Group:		Base/Kernel
+Group(de):	Grunds‰tzlich/Kern
+Group(pl):	Podstawowe/J±dro
 
 %description kernel-%{sysver}-modules
+Kernel modules for DinX.
 
-%description -l pl kernel-%{sysver}-modules
+%description kernel-%{sysver}-modules -l pl
+Modu≥y j±dra dla DinX.
 
 %prep
 %setup -q
-
 #%patch
 
 %build
@@ -71,7 +85,7 @@ install modules/dinx*.o $RPM_BUILD_ROOT%{_modulesdir}/misc
 gzip -9nf README
 
 cd $RPM_BUILD_ROOT/dev
-echo "Makeing DinX devices.."
+echo "Making DinX devices.."
 mknod dinxwin0 c 60 0
 mknod dinxwin1 c 60 1
 mknod dinxwin2 c 60 2
@@ -90,7 +104,7 @@ mknod dinxwin14 c 60 14
 mknod dinxwin15 c 60 15
 ln -sf dinxwin0 dinxwin
 
-echo "Makeing DinX Server devices.."
+echo "Making DinX Server devices.."
 mknod dinxsvr0 c 60 0
 mknod dinxsvr1 c 60 1
 mknod dinxsvr2 c 60 2
