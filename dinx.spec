@@ -3,7 +3,7 @@ Summary:	DinX is not X
 Summary(pl):	DinX to nie X
 Name:		dinx
 Version:	0.2.2
-Release:	1
+Release:	2
 License:	MPL/GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -134,11 +134,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.gz doc/*
 %attr(755,root,root) %{_bindir}/dinxd
-%attr(644,root,root) %{_libdir}/libdinx.a
 %attr(666,root,root) /dev/dinx*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(644,root,root) %{_libdir}/libdinx.a
 %attr(644,root,root) %{_sysincludedir}/linux/dinx.h
 %attr(644,root,root) %{_sysincludedir}/dinx/*.h
 %attr(644,root,root) %{_includedir}/linux/dinx.h
