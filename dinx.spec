@@ -15,9 +15,9 @@ URL:		http://dinx.sourceforge.net/
 #Requires:	
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define	_prefix	/usr/DinX
-%define _modulesdir	/lib/modules/%{sysver}
-%define	_sysincludedir	/usr/include
+%define		_prefix		/usr/DinX
+%define		_modulesdir	/lib/modules/%{sysver}
+%define		_sysincludedir	/usr/include
 
 %description
 
@@ -52,7 +52,7 @@ Group(pl):	DinX
 
 %build
 ./configure --prefix=%{_prefix}
-%{__make} RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
+%{__make} RPM_OPT_FLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -62,9 +62,9 @@ install -d $RPM_BUILD_ROOT%{_includedir}/{dinx,linux}
 %{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
 
 (cd $RPM_BUILD_ROOT; cd usr/include; install -d {dinx,linux}; \
-ln -s ../../DinX/include/linux/dinx.h linux/dinx.h;\
-ln -s ../../DinX/include/dinx/access.h dinx/access.h; \
-ln -s ../../DinX/include/dinx/messages.h dinx/messages.h)
+ln -sf ../../DinX/include/linux/dinx.h linux/dinx.h;\
+ln -sf ../../DinX/include/dinx/access.h dinx/access.h; \
+ln -sf ../../DinX/include/dinx/messages.h dinx/messages.h)
 
 install -s modules/dinx*.o $RPM_BUILD_ROOT%{_modulesdir}/misc
 
@@ -88,7 +88,7 @@ mknod dinxwin12 c 60 12
 mknod dinxwin13 c 60 13
 mknod dinxwin14 c 60 14
 mknod dinxwin15 c 60 15
-ln -s dinxwin0 dinxwin
+ln -sf dinxwin0 dinxwin
 
 echo "Makeing DinX Server devices.."
 mknod dinxsvr0 c 60 0
@@ -107,7 +107,7 @@ mknod dinxsvr12 c 60 12
 mknod dinxsvr13 c 60 13
 mknod dinxsvr14 c 60 14
 mknod dinxsvr15 c 60 15
-ln -s dinxsvr0 dinxsvr
+ln -sf dinxsvr0 dinxsvr
 
 %clean
 rm -rf $RPM_BUILD_ROOT
