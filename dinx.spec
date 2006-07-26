@@ -131,4 +131,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files kernel-%{sysver}-modules
 %defattr(644,root,root,755)
-%attr(644,root,root) %{_modulesdir}/misc/*.o
+%{_modulesdir}/misc/*.o
