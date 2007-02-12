@@ -1,6 +1,6 @@
 %define		sysver	%(echo `uname -r`)
 Summary:	DinX is not X
-Summary(pl.UTF-8):   DinX to nie X
+Summary(pl.UTF-8):	DinX to nie X
 Name:		dinx
 Version:	0.2.2
 Release:	2
@@ -29,7 +29,7 @@ okienkowych na małym systemie.
 
 %package devel
 Summary:	DinX devel
-Summary(pl.UTF-8):   DinX dla programistów
+Summary(pl.UTF-8):	DinX dla programistów
 Group:		Development/Libraries
 
 %description devel
@@ -40,7 +40,7 @@ Pliki nagłówkowe do bibliotek DinX.
 
 %package kernel-%{sysver}-modules
 Summary:	DinX kernel modules
-Summary(pl.UTF-8):   DinX - moduły jądra
+Summary(pl.UTF-8):	DinX - moduły jądra
 Group:		Base/Kernel
 
 %description kernel-%{sysver}-modules
