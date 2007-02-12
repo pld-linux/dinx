@@ -1,6 +1,6 @@
 %define		sysver	%(echo `uname -r`)
 Summary:	DinX is not X
-Summary(pl):	DinX to nie X
+Summary(pl.UTF-8):   DinX to nie X
 Name:		dinx
 Version:	0.2.2
 Release:	2
@@ -22,32 +22,32 @@ DinX is an experimental windowing system. DinX is designed to be
 simple, lightweight, and fast. It should be suitable for running
 multiple windowed programs on a small system, like a Linux handheld.
 
-%description -l pl
-DinX jest eksperymentalnym systemem okienkowym. Ma byæ prosty, lekki i
-szybki. Powinien byæ odpowiedni do uruchamiania wielu aplikacji
-okienkowych na ma³ym systemie.
+%description -l pl.UTF-8
+DinX jest eksperymentalnym systemem okienkowym. Ma byÄ‡ prosty, lekki i
+szybki. Powinien byÄ‡ odpowiedni do uruchamiania wielu aplikacji
+okienkowych na maÅ‚ym systemie.
 
 %package devel
 Summary:	DinX devel
-Summary(pl):	DinX dla programistów
+Summary(pl.UTF-8):   DinX dla programistÃ³w
 Group:		Development/Libraries
 
 %description devel
 Header files for DinX libraries.
 
-%description devel -l pl
-Pliki nag³ówkowe do bibliotek DinX.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe do bibliotek DinX.
 
 %package kernel-%{sysver}-modules
 Summary:	DinX kernel modules
-Summary(pl):	DinX - modu³y j±dra
+Summary(pl.UTF-8):   DinX - moduÅ‚y jÄ…dra
 Group:		Base/Kernel
 
 %description kernel-%{sysver}-modules
 Kernel modules for DinX.
 
-%description kernel-%{sysver}-modules -l pl
-Modu³y j±dra dla DinX.
+%description kernel-%{sysver}-modules -l pl.UTF-8
+ModuÅ‚y jÄ…dra dla DinX.
 
 %prep
 %setup -q
